@@ -8,17 +8,31 @@
   <link href="https://fonts.googleapis.com/css2?family=Flavors&display=swap" rel="stylesheet">
 
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       font-family: "Flavors", cursive;
       background: #FFBBED;
       text-align: center;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .game-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
     }
 
     .game-container {
       position: relative;
-      width: 550px;
-      height: 750px;
-      margin: 30px auto;
+      width: 100%;
+      max-width: 550px;
+      aspect-ratio: 11 / 15; /* Keeps height proportional */
+      margin: 0 auto;
       background: #FFBBED;
       border: 2px solid #FFBBED;
       overflow: hidden;
@@ -36,49 +50,44 @@
     }
 
     .controls {
-      margin: 20px 0;
+      margin: 20px auto;
+      max-width: 550px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
     }
 
     .controls button {
-      margin: 5px;
       padding: 8px 12px;
       font-size: 14px;
       cursor: pointer;
-    }
-
-    .flavors-regular {
       font-family: "Flavors", cursive;
-      font-weight: 400;
-      font-style: normal;
     }
   </style>
 </head>
 <body>
 
   <h1>Style Star Baddie!</h1>
-  <div class="game-container">
-    <!-- Base avatar image -->
-    <div class="layer" id="base-avatar" style="background-image: url('images/base/avatar.PNG'); z-index: 0;"></div>
 
-    <!-- Garment layers -->
-    <div class="layer" id="accessory2" style="z-index: 1;"></div>
-    <div class="layer" id="shoes" style="z-index: 2;"></div>
-    <div class="layer" id="bottom" style="z-index: 3;"></div>
-    <div class="layer" id="top" style="z-index: 5;"></div>
-    <div class="layer" id="accessory1" style="z-index: 6;"></div>
+  <div class="game-wrapper">
+    <div class="game-container">
+      <div class="layer" id="base-avatar" style="background-image: url('images/base/avatar.PNG'); z-index: 0;"></div>
+      <div class="layer" id="accessory2" style="z-index: 1;"></div>
+      <div class="layer" id="shoes" style="z-index: 2;"></div>
+      <div class="layer" id="bottom" style="z-index: 3;"></div>
+      <div class="layer" id="top" style="z-index: 5;"></div>
+      <div class="layer" id="accessory1" style="z-index: 6;"></div>
+    </div>
   </div>
 
   <div class="controls">
-    <div>
-      <button onclick="nextItem('top')">Top</button>
-      <button onclick="nextItem('bottom')">Bottom</button>
-      <button onclick="nextItem('shoes')">Shoes</button>
-      <button onclick="nextItem('accessory1')">Accessory 1</button>
-      <button onclick="nextItem('accessory2')">Accessory 2</button>
-    </div>
-    <div>
-      <button onclick="randomizeOutfit()">🎲 Randomize Outfit</button>
-    </div>
+    <button onclick="nextItem('top')">Top</button>
+    <button onclick="nextItem('bottom')">Bottom</button>
+    <button onclick="nextItem('shoes')">Shoes</button>
+    <button onclick="nextItem('accessory1')">Accessory 1</button>
+    <button onclick="nextItem('accessory2')">Accessory 2</button>
+    <button onclick="randomizeOutfit()">🎲 Randomize Outfit</button>
   </div>
 
   <script>
@@ -118,7 +127,6 @@
       });
     }
 
-    // Initialize
     itemTypes.forEach(updateLayer);
   </script>
 
