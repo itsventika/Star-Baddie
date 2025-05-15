@@ -58,7 +58,7 @@
   <h1>Style Star Baddie!</h1>
   <div class="game-container">
     <!-- Base avatar image -->
-    <div class="layer" id="base-avatar" style="background-image: url('images/base/avatar.png'); z-index: 0;"></div>
+    <div class="layer" id="base-avatar" style="background-image: url('images/base/avatar.PNG'); z-index: 0;"></div>
 
     <!-- Garment layers -->
     <div class="layer" id="accessory2" style="z-index: 1;"></div>
@@ -100,7 +100,7 @@
 
     function updateLayer(item) {
       const index = currentIndexes[item];
-      document.getElementById(item).style.backgroundImage = `url('images/${item}/${index}.png')`;
+      document.getElementById(item).style.backgroundImage = `url('images/${item}/${index}.PNG')`;
     }
 
     function nextItem(item) {
