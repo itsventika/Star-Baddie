@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Style Star Baddie!</title>
+
+  <!-- Google Fonts: Flavors -->
+  <link href="https://fonts.googleapis.com/css2?family=Flavors&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: "Flavors", cursive;
+      background: #FFBBED;
+      text-align: center;
+    }
+
+    .game-container {
+      position: relative;
+      width: 550px;
+      height: 750px;
+      margin: 30px auto;
+      background: #FFBBED;
+      border: 2px solid #FFBBED;
+      overflow: hidden;
+    }
+
+    .layer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    .controls {
+      margin: 20px 0;
+    }
+
+    .controls button {
+      margin: 5px;
+      padding: 8px 12px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .flavors-regular {
+      font-family: "Flavors", cursive;
+      font-weight: 400;
+      font-style: normal;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Style Star Baddie!</h1>
+  <div class="game-container">
+    <!-- Base avatar image -->
+    <div class="layer" id="base-avatar" style="background-image: url('images/base/avatar.png'); z-index: 0;"></div>
+
+    <!-- Garment layers -->
+    <div class="layer" id="accessory2" style="z-index: 1;"></div>
+    <div class="layer" id="shoes" style="z-index: 2;"></div>
+    <div class="layer" id="bottom" style="z-index: 3;"></div>
+    <div class="layer" id="top" style="z-index: 5;"></div>
+    <div class="layer" id="accessory1" style="z-index: 6;"></div>
+  </div>
+
+  <div class="controls">
+    <div>
+      <button onclick="nextItem('top')">Top</button>
+      <button onclick="nextItem('bottom')">Bottom</button>
+      <button onclick="nextItem('shoes')">Shoes</button>
+      <button onclick="nextItem('accessory1')">Accessory 1</button>
+      <button onclick="nextItem('accessory2')">Accessory 2</button>
+    </div>
+    <div>
+      <button onclick="randomizeOutfit()">🎲 Randomize Outfit</button>
+    </div>
+  </div>
+
+  <script>
+    const itemTypes = ['top', 'bottom', 'shoes', 'accessory1', 'accessory2'];
+    const itemCounts = {
+      top: 20,
+      bottom: 13,
+      shoes: 10,
+      accessory1: 5,
+      accessory2: 5
+    };
+    const currentIndexes = {
+      top: 1,
+      bottom: 1,
+      shoes: 1,
+      accessory1: 1,
+      accessory2: 1
+    };
+
+    function updateLayer(item) {
+      const index = currentIndexes[item];
+      document.getElementById(item).style.backgroundImage = `url('images/${item}/${index}.png')`;
+    }
+
+    function nextItem(item) {
+      currentIndexes[item]++;
+      if (currentIndexes[item] > itemCounts[item]) {
+        currentIndexes[item] = 1;
+      }
+      updateLayer(item);
+    }
+
+    function randomizeOutfit() {
+      itemTypes.forEach(item => {
+        currentIndexes[item] = Math.floor(Math.random() * itemCounts[item]) + 1;
+        updateLayer(item);
+      });
+    }
+
+    // Initialize
+    itemTypes.forEach(updateLayer);
+  </script>
+
+</body>
+</html>
